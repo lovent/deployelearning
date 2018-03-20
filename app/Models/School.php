@@ -3,27 +3,38 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
+use App\User;
 
 class School extends Model
 {
+    use Searchable;
+
+    public function searchableAs()
+    {
+        return 'searchschool';
+    }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        return $array;
+    }
+
     protected $fillable = [
+        'id',
         'name',
         'description',
-        'city_id',
+        'city',
     ];
-
-    public function city()
-    {
-        return $this->belongsTo(City::class);
-    }
 
     public function teachers()
     {
         return $this->hasMany(Teacher::class);
     }
 
-    public function students()
+    public function users()
     {
-        return $this->hasMany(Student::class);
+        return $this->hasMany(User::class);
     }
 }

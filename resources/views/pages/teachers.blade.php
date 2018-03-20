@@ -3,72 +3,48 @@
 
 @section('content') 
         
-    <section id="portfolio">
+    <section id="feature" class="transparent-bg">
         <div class="container">
-            <div class="center">
-               <h2>Portfolio</h2>
-               <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+            <div class="get-started center wow fadeInDown">
+                <h2>{{trans('view.teacher-title')}}</h2>
+            </div><!--/.get-started-->
+
+            <div class="clients-area center wow fadeInDown">
+                <form method="GET" action="{{ route('teacher') }}">
+                    <h2><input type="text" name="titlesearch" id="faq_search_input" class="form-control search_box" autocomplete="off" placeholder="{{trans('view.search-placeholder')}}"></h2>
+                    <button class="btn btn-success">{{trans('view.search-button')}}</button>                
+                    <div id="searchresultdata" class="faq-articles"></div>
+                    <p class="lead"></p>
+                </form>
             </div>
-        
 
-            <ul class="portfolio-filter text-center">
-                <li><a class="btn btn-default active" href="#" data-filter="*">All Works</a></li>
-                <li><a class="btn btn-default" href="#" data-filter=".bootstrap">Creative</a></li>
-                <li><a class="btn btn-default" href="#" data-filter=".html">Photography</a></li>
-                <li><a class="btn btn-default" href="#" data-filter=".wordpress">Web Development</a></li>
-            </ul><!--/#portfolio-filter-->
-
-                    <div class="row">
-                        <div class="col-md-4 wow fadeInDown">
-                            <div class="clients-comments text-center">
-                                <img src="images/home/client1.png" class="img-circle" alt="">
-                                <h3>Đi thi chỉ cần thay số là 8 điểm</h3>
-                                <h4><span>-Thầy Trần Bá Phương /</span>  ĐH Công nghiệp Hà Nội</h4>
-                            </div>
-                        </div>
-                        <div class="col-md-4 wow fadeInDown">
-                            <div class="clients-comments text-center">
-                                <img src="images/home/client2.png" class="img-circle" alt="">
-                                <h3>Đi thi chỉ cần thay số là 8 điểm</h3>
-                                <h4><span>-Thầy Trần Bá Phương /</span>  ĐH Công nghiệp Hà Nội</h4>
-                            </div>
-                        </div>
-                        <div class="col-md-4 wow fadeInDown">
-                            <div class="clients-comments text-center">
-                                <img src="images/home/client3.png" class="img-circle" alt="">
-                                <h3>Đi thi chỉ cần thay số là 8 điểm</h3>
-                                <h4><span>-Thầy Trần Bá Phương /</span>  ĐH Công nghiệp Hà Nội</h4>
-                            </div>
+            <div class="row">
+                @if($teachers->count())
+                    @foreach($teachers as $teacher)
+                    <div class="col-md-4 wow fadeInDown">
+                        <div class="clients-comments text-center">
+                            <a href="{{route('teacher_detail' , $teacher->id)}}">
+                                <img src="{{asset("assets/demo-bower/images/home/$teacher->avatar_url")}}" class="img-circle" alt="">
+                                <h3></h3>
+                                <h4><span>{{ $teacher->teacher_name }}</span></h4>
+                                <h4><span>{{trans('view.subject')}} : {{ $teacher->subject }}</span></h4>
+                                <h4><span>{{trans('view.experience')}} : {{ $teacher->experience }}</span></h4>
+                            </a>
                         </div>
                     </div>
+                    @endforeach
+                @else
+                    <tr>
+                        <td colspan="4">{{trans('view.no-result')}}</td>
+                    </tr>
+                @endif                
 
-                    <div class="row">
-                        <div class="col-md-4 wow fadeInDown">
-                            <div class="clients-comments text-center">
-                                <img src="images/home/client1.png" class="img-circle" alt="">
-                                <h3>Đi thi chỉ cần thay số là 8 điểm</h3>
-                                <h4><span>-Thầy Trần Bá Phương /</span>  ĐH Công nghiệp Hà Nội</h4>
-                            </div>
-                        </div>
-                        <div class="col-md-4 wow fadeInDown">
-                            <div class="clients-comments text-center">
-                                <img src="images/home/client2.png" class="img-circle" alt="">
-                                <h3>Đi thi chỉ cần thay số là 8 điểm</h3>
-                                <h4><span>-Thầy Trần Bá Phương /</span>  ĐH Công nghiệp Hà Nội</h4>
-                            </div>
-                        </div>
-                        <div class="col-md-4 wow fadeInDown">
-                            <div class="clients-comments text-center">
-                                <img src="images/home/client3.png" class="img-circle" alt="">
-                                <h3>Đi thi chỉ cần thay số là 8 điểm</h3>
-                                <h4><span>-Thầy Trần Bá Phương /</span>  ĐH Công nghiệp Hà Nội</h4>
-                            </div>
-                        </div>
-                    </div>                    
-                </div>
             </div>
-        </div>
-    </section><!--/#portfolio-item-->
+            <div class="center wow fadeInDown">
+                {!! $teachers->render() !!}
+            </div>  
+        </div><!--/.container-->
+    </section><!--/#feature-->
 
         @include('layouts.footer');
 @endsection

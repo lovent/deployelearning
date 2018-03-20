@@ -5,128 +5,53 @@
     <section id="services" class="service-item">
        <div class="container">
             <div class="center wow fadeInDown">
-                <h2>Our Class</h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+                <h2>{{trans('view.class-title')}}</h2>
+                <p class="lead">{{trans('view.class-invite')}}</p>
             </div>
 
-            <div class="row">
+            <!-- filter -->
+            <!-- <div class="form-group">
+                <label for="exampleFormControlSelect1">{trans('view.subject')Ư</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option value="1">{trans('view.math')Ư</option>
+                        <option value="2">{trans('view.physic')Ư</option>
+                        <option value="3">{trans('view.chemis')Ư</option>
+                        <option value="4">{trans('view.bio')Ư</option>
+                        <option value="5">{trans('view.literature')Ư</option>
+                        <option value="6">{trans('view.history')Ư</option>
+                        <option value="7">{trans('view.geography')Ư</option>
+                        <option value="8">{trans('view.english')Ư</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">{trans('view.price')Ư</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option value="1">{trans('view.under5')Ư</option>
+                        <option value="2">{trans('view.fr5to10')Ư</option>
+                        <option value="3">{trans('view.over10')Ư</option>
+                    </select>
+            </div> -->
+
+            <div class="row">          
+                @foreach($classes as $class)
 
                 <div class="col-sm-6 col-md-4">
                     <div class="media services-wrap wow fadeInDown">
                         <div class="pull-left">
-                            <img class="img-responsive" src="images/home/services/services1.png">
+                            <img class="img-responsive" src="{{asset('assets/demo-bower/images/home/services/services1.png')}}">
                         </div>
                         <div class="media-body">
-                            <h3 class="media-heading">Đại học - Cao đẳng</h3>
-                            <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
+                            <a href="{{route('class_detail' , $class->id)}}"><h3 class="media-heading">{{ $class->lophoc_name}}</h3></a>
+                            <p>{{ $class->status }}</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-sm-6 col-md-4">
-                    <div class="media services-wrap wow fadeInDown">
-                        <div class="pull-left">
-                            <img class="img-responsive" src="images/home/services/services2.png">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="media-heading">Luyện thi THPT</h3>
-                            <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
-                <div class="col-sm-6 col-md-4">
-                    <div class="media services-wrap wow fadeInDown">
-                        <div class="pull-left">
-                            <img class="img-responsive" src="images/home/services/services3.png">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="media-heading">Luyện thi THPT</h3>
-                            <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
-                        </div>
-                    </div>
-                </div>  
-
-                <div class="col-sm-6 col-md-4">
-                    <div class="media services-wrap wow fadeInDown">
-                        <div class="pull-left">
-                            <img class="img-responsive" src="images/home/services/services4.png">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="media-heading">Luyện thi THPT</h3>
-                            <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4">
-                    <div class="media services-wrap wow fadeInDown">
-                        <div class="pull-left">
-                            <img class="img-responsive" src="images/home/services/services5.png">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="media-heading">Luyện thi THPT</h3>
-                            <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4">
-                    <div class="media services-wrap wow fadeInDown">
-                        <div class="pull-left">
-                            <img class="img-responsive" src="images/home/services/services6.png">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="media-heading">Luyện thi THPT</h3>
-                            <p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>
-                        </div>
-                    </div>
-                </div>                                                
             </div><!--/.row-->
-        </div><!--/.container-->
+        </div><!--/.container-->        
     </section><!--/#services-->
-
-    
-    <section id="feature" class="transparent-bg">
-        <div class="container">
-            <div class="get-started center wow fadeInDown">
-                <h2>Ready to get started</h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore  magna aliqua. <br>  Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-                <div class="request">
-                    <h4><a href="#">Request a free Quote</a></h4>
-                </div>
-            </div><!--/.get-started-->
-
-            <div class="clients-area center wow fadeInDown">
-                <h2>What our teachers says</h2>
-                <p class="lead"></p>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4 wow fadeInDown">
-                    <div class="clients-comments text-center">
-                        <img src="images/home/client1.png" class="img-circle" alt="">
-                        <h3>Đi thi chỉ cần thay số là 8 điểm</h3>
-                        <h4><span>-Thầy Trần Bá Phương /</span>  ĐH Công nghiệp Hà Nội</h4>
-                    </div>
-                </div>
-                <div class="col-md-4 wow fadeInDown">
-                    <div class="clients-comments text-center">
-                        <img src="images/home/client2.png" class="img-circle" alt="">
-                        <h3>Đi thi chỉ cần thay số là 8 điểm</h3>
-                        <h4><span>-Thầy Trần Bá Phương /</span>  ĐH Công nghiệp Hà Nội</h4>
-                    </div>
-                </div>
-                <div class="col-md-4 wow fadeInDown">
-                    <div class="clients-comments text-center">
-                        <img src="images/home/client3.png" class="img-circle" alt="">
-                        <h3>Đi thi chỉ cần thay số là 8 điểm</h3>
-                        <h4><span>-Thầy Trần Bá Phương /</span>  ĐH Công nghiệp Hà Nội</h4>
-                    </div>
-                </div>
-            </div>
-        </div><!--/.container-->
-    </section><!--/#feature-->
-    @include('layouts.footer');
+@include('layouts.footer');
 @endsection
 

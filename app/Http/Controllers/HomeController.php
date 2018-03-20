@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Teacher;
 
 class HomeController extends Controller
 {
@@ -23,32 +24,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.home');
+        $top_teacher = Teacher::where('active', 1)->orderBy('experience', 'DESC')->paginate(8);
+
+        return view('pages.home', compact('top_teacher'));
     }
 
-    public function about()
+    public function changeLanguage(Request $request)
     {
-        return view('pages.about-us');
-    }
+    \Session::put('website_language', $request->language);
 
-    public function classes()
-    {
-        return view('pages.classes');
+    return redirect()->back();
     }
-
-    public function fee()
-    {
-        return view('pages.fee');
-    }
-
-    public function support()
-    {
-        return view('pages.support');
-    }
-
-    public function teacher()
-    {
-        return view('pages.teachers');
-    }
-
 }

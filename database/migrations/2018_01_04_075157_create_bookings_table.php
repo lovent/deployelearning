@@ -15,11 +15,12 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->increments('id');
-            $table->float('payment');
+            $table->string('payment')->nullable();
             $table->unsignedInteger('status');
+            $table->boolean('fee')->default(0);
+            $table->softDeletes();
             $table->timestamps();
-            $table->unsignedInteger('student_id');
-            $table->unsignedInteger('class_id');
+            $table->unsignedInteger('user_id');
         });
     }
 
