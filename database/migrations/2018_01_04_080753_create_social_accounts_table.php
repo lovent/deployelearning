@@ -17,7 +17,7 @@ class CreateSocialAccountsTable extends Migration
             $table->increments('id');
             $table->string('provider_user_id');
             $table->string('provider');
-            $table->unsignedInteger('student_id');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
         });
     }

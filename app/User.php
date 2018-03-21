@@ -2,28 +2,49 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Auth;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    use SoftDeletes;
+    use Searchable;
+    
     protected $fillable = [
-        'name', 'email', 'password',
+        'user_id',
+        'email',
+        'name',
+        'password',
+        'active',
+        'gender',
+        'avatar_url',
+        'address',
+        'phone_number',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    protected $dates = ['deleted_at'];
+
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
+
+    public function school()
+    {
+        return $this->belongsTo(School::class);
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function rates()
+    {
+        return $this->hasMany(Rate::class);
+    }
 }

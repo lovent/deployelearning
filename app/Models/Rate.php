@@ -3,25 +3,31 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Rate extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
+        'id',
         'point',
         'content',
-        'student_id',
-        'class_id',
+        'user_id',
+        'lophoc_id',
     ];
+
+    protected $dates = ['deleted_at'];
 
     protected $timestamp = true;
 
-    public function student()
+    public function user()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function class()
+    public function lophoc()
     {
-        return $this->belongsTo(Class::class);
+        return $this->belongsTo(Lophoc::class);
     }
 }

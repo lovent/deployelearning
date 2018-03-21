@@ -2,8 +2,10 @@
 
 namespace App\Console;
 
+use DB;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Carbon\Carbon;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,8 +26,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        // chuyen trang thai lop hoc-> da bat dau khi den ngay
+        $schedule->call(function() {
+            DB::table('lophocs')->where('status', '=', '3')->where('begin_at', '<', Carbon::today())->update(['status' => 2]);          
+        })->dailyAt('2:00');
     }
 
     /**

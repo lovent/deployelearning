@@ -6,9 +6,9 @@
     <section id="content">
         <form class="form-horizontal" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
-            <h1>Login Form</h1>
+            <h1>{{trans('view.login-form')}}</h1>
             <div class="form-group{{$errors->has('email') ? 'has-error' : ''}}">
-                <input type="text" placeholder="Email Address" required="" name="email" id="email" value="{{ old('email') }}"/>
+                <input type="text" placeholder="Email" name="email"/>
                 @if ($errors->has('email'))
                     <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-group{{$errors->has('password') ? 'has-error' : ''}}">
-                <input type="password" placeholder="Password" required="" id="password" name="password" value="{{old('password')}}"/>
+                <input type="password" placeholder="Mật khẩu" name="password"/>
                 @if ($errors->has('password')) 
                     <span class="help-block">
                         <strong>{{ $errors->first('password')}}</strong>
@@ -25,10 +25,7 @@
                 @endif
             </div>
             <div class="form-group">
-                <input type="submit" value="Log in" />
-                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                </a>
+                <input type="submit" value="{{trans('view.login')}}" />
             </div>
         </form>
     </section>

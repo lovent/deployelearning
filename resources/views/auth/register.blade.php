@@ -6,9 +6,9 @@
     <section id="content">
         <form class="form-horizontal" method="POST" action="{{ route('register') }}">
             {{ csrf_field() }}
-            <h1>Register Form</h1>
+            <h1>{{trans('view.register-form')}}</h1>
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                <input type="text" placeholder="Name" id="name" name="name" value="{{ old('name') }}" required autofocus/>
+                <input type="text" placeholder="Họ tên" name="user_name" required autofocus/>
                 @if ($errors->has('name'))
                     <span class="help-block">
                         <strong>{{ $errors->first('name') }}</strong>
@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-group{{$errors->has('email') ? 'has-error' : ''}}">
-                <input type="text" placeholder="Email" id="email" name="email" value="{{old('email')}}"/>
+                <input type="text" placeholder="Email" name="email"/>
                 @if ($errors->has('email')) 
                     <span class="help-block">
                         <strong>{{ $errors->first('email')}}</strong>
@@ -26,7 +26,7 @@
             </div>
 
             <div class="form-group{{$errors->has('password') ? 'has-error' : ''}}">
-                <input type="password" placeholder="Password" id="password" name="password" value="{{old('password')}}"/>
+                <input type="password" placeholder="Mật khẩu" name="password"/>
                 @if ($errors->has('password')) 
                     <span class="help-block">
                         <strong>{{ $errors->first('password')}}</strong>
@@ -35,11 +35,11 @@
             </div>
 
             <div class="form-group">
-                <input placeholder="Confirm Password" id="password-confirm" type="password" name="password_confirmation" required>
+                <input placeholder="Nhập lại mật khẩu" type="password" name="password_confirm" required>
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Register" />
+                <input type="submit" value="{{trans('view.register')}}" />
             </div>
         </form>
     </section>

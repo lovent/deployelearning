@@ -3,10 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Teacher extends Model
 {
+    use SoftDeletes;
+    use Searchable;
+    
     protected $fillable = [
+        'id',
         'email',
         'avatar_url',
         'name',
@@ -17,18 +23,15 @@ class Teacher extends Model
         'school_id',
     ];
 
-    proteted $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $dates = ['deleted_at'];
 
-    public function classes()
+    public function lophocs()
     {
-        return $this->hasMany(Class::class);
+        return $this->hasMany(Lophoc::class);
     }
 
     public function school()
     {
-        return $this->belongTo(School::class);
+        return $this->belongsTo(School::class);
     }
 }

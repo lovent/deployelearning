@@ -17,7 +17,9 @@ class CreateSchoolsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
-            $table->unsignedInteger('city_id');
+            $table->string('city');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

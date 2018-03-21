@@ -18,8 +18,9 @@ class CreateRatesTable extends Migration
             $table->unsignedInteger('point');
             $table->text('content');
             $table->timestamps();
-            $table->unsignedInteger('student_id');
-            $table->unsignedInteger('class_id');
+            $table->softDeletes();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('lophoc_id');
         });
     }
 

@@ -16,15 +16,16 @@ class CreateTeachersTable extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email')->unique();
-            $table->string('password');
             $table->string('avatar_url')->nullable();
             $table->string('name');
-            $table->enum('gender', ['female', 'male']);
+            $table->enum('gender', ['Nữ', 'Nam']);
+            $table->enum('subject', ['Toán học', 'Vật lý', 'Hóa học', 'Sinh học', 'Văn học', 'Lịch sử', 'Địa lý', 'Tiếng Anh']);
             $table->boolean('active')->default(1);
-            $table->string('graduated_at');
+            $table->string('graduated_at')->nullable();
             $table->unsignedInteger('experience');
+            $table->string('videolink')->nullable();
+            $table->softDeletes();
             $table->timestamps();
-            $table->rememberToken('rememberToken');
             $table->unsignedInteger('school_id');
         });
     }

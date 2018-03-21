@@ -3,23 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Booking extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
+        'id',
         'payment',
         'status',
-        'student_id',
-        'class_id',
+        'user_id',
     ];
 
-    public function student()
-    {
-        return $this->belongsTo(Student::class);
-    }
+    protected $dates = ['deleted_at'];
 
-    public function class()
+    public function user()
     {
-        return $this->belongsTo(Class::class);
+        return $this->belongsTo(User::class);
     }
 }
