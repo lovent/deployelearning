@@ -58,7 +58,7 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "php artisan optimize",
             "php artisan key:generate",
-            "chmod -R 777 public/", // đoạn này quan trọng vcl
+            "chmod -R 777 public/",
             "@deploy"
         ],
         "post-update-cmd": [
